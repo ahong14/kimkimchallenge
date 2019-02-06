@@ -3,9 +3,8 @@ import './Days.css';
 import axios from 'axios';
 import querystring from 'querystring';
 
-
+//Day component, displays info about day associated with a trip plan
 class Days extends Component{
-
     constructor(props){
         super(props);
         this.state = {
@@ -17,6 +16,7 @@ class Days extends Component{
         this.removeDay = this.removeDay.bind(this);
     }
 
+    //remove day record from database
     removeDay(){
         axios.delete("http://localhost:4000/api/removePlan/day", {
             params:{
@@ -24,19 +24,23 @@ class Days extends Component{
             }
         })
         .then(res => {
+            //update results, render
             this.props.getDays();
         })
         .catch(err => {
-
+            alert(err);
         })
     }
 
     render(){
+        //get day id from query string parameter
+        //route to /day/edit/?id to edit specific day record
         const queryID = {
             id: this.state.dayID
         }
         var query = querystring.stringify(queryID);
         const editURL = "/day/edit?" + query;
+
         return(
             <div class="col s12 m6">
                 <div class="card">

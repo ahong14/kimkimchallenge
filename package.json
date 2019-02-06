@@ -6,7 +6,10 @@
   "scripts": {
     "backend": "nodemon server.js",
     "frontend": "cd client && npm start",
-    "start": "concurrently \"npm run backend\" \"npm run frontend\""
+    "start": "concurrently \"npm run backend\" \"npm run frontend\"",
+    "permissions": "./permissions && cd client/ && ./permissions",
+    "backendPackages": "npm install",
+    "frontendPackages": "cd client && npm install"
   },
   "repository": {
     "type": "git",

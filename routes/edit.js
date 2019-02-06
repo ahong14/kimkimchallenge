@@ -3,6 +3,7 @@ const router = express.Router();
 const sqlite3 = require('sqlite3').verbose();
 const db = new sqlite3.Database("Trips.db");
 
+//update info for a trip_plan record
 router.patch('/', (req,res) => {
     //extract params
     var tripID = req.body.params.id;
@@ -13,6 +14,7 @@ router.patch('/', (req,res) => {
 
     //updating summary only
     if(tripTitle.trim() === '' && dayDescription.trim() != ''){
+        //execute sql command to update summary and date updated of record with matching id
         db.run("UPDATE trip_plans SET summary = $summary, updated_at = $updated WHERE id = $id", {
             $id: tripID,
             $summary: dayDescription,
@@ -31,6 +33,7 @@ router.patch('/', (req,res) => {
 
     //updating title only
     else if (tripTitle.trim() != '' && dayDescription.trim() === ''){
+        //execute sql command to update title and date updated of record with matching id
         db.run("UPDATE trip_plans SET title = $title, updated_at = $updated WHERE id = $id", {
             $id: tripID,
             $title: tripTitle,
@@ -49,6 +52,7 @@ router.patch('/', (req,res) => {
 
     //updating both title and summary
     else if (tripTitle.trim()!= '' && dayDescription.trim() != ''){
+        //execute sql command to update both title summary and date updated of record with matching id
         db.run("UPDATE trip_plans SET summary = $summary , title = $title, updated_at = $updated WHERE id = $id", {
             $id: tripID,
             $summary: dayDescription,
@@ -71,16 +75,18 @@ router.patch('/', (req,res) => {
     }
 })
 
-//update day
+//update day record
 router.patch('/day', (req,res) => {
+    //extract params
     var dayID = req.body.params.id;
     var dayTitle = req.body.params.title;
     var dayDescription = req.body.params.description;
     var date = new Date();
     date = date.toDateString();
 
-    //updating summary only
+    //updating description only
     if(dayTitle.trim() === '' && dayDescription.trim() != ''){
+        //execute sql command to update description and updated date based on matching day id
         db.run("UPDATE days SET description = $description, updated_at = $updated WHERE id = $id", {
             $id: dayID,
             $description: dayDescription,
@@ -133,7 +139,7 @@ router.patch('/day', (req,res) => {
         })
     }
 
-    //empty search query
+    //handle empty search query
     else{
         return res.status(200).send("No updates with empty queries!");
     }

@@ -4,23 +4,22 @@ import queryString from 'query-string';
 import axios from 'axios';
 import DaysView from '../DaysView/DaysView';
 
-
+//Component to edit existing trip_plan component
 class EditPlan extends Component{
-
     constructor(props){
         super(props);
+        //get trip_plan id from query string, update state
         var queryParams = queryString.parse(this.props.location.search);
         this.state = {
             title:'',
             summary: '',
             id: queryParams.id
         }
-
         this.changeSearchValue = this.changeSearchValue.bind(this);
         this.editTrip = this.editTrip.bind(this);
     }
 
-    //change search values
+    //change search values based on input
     changeSearchValue(){
         this.setState({
             title: this.editTitle.value,
@@ -28,7 +27,8 @@ class EditPlan extends Component{
         });
     }
 
-    //onclick function to update trip details
+    //onClick function to update trip details, when user clicks button
+    //update trip_plan record in database based on id
     editTrip(){
         axios.patch('http://localhost:4000/api/editPlan', {
             params:{    
@@ -44,11 +44,6 @@ class EditPlan extends Component{
             alert(err);
         })
     }
-
-    //extract id from query param of url
-    // componentDidMount(){
-     
-    // }
 
     render(){
         return(
@@ -76,7 +71,6 @@ class EditPlan extends Component{
                         </div>
                     </div>
                 </div>
-
                 <DaysView id = {this.state.id}/>
             </div>
         );

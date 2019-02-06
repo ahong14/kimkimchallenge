@@ -11,7 +11,7 @@ router.post('/trip', (req, res) => {
     var date = new Date();
     date = date.toDateString();
 
-    //insert into table
+    //insert into trip_plans table
     db.run("INSERT INTO trip_plans (title, summary, created_at, updated_at) VALUES ($title, $summary, $created, $updated)",{
         $title: tripTitle,
         $summary: tripSummary,
@@ -23,11 +23,7 @@ router.post('/trip', (req, res) => {
             return res.status(500).send("error with database");
         }
 
-        else{
-            db.all("SELECT * FROM trip_plans", (err, items) => {
-                console.log(items)
-            });
-            
+        else{   
             return res.status(200).send("Trip Created!");
         }
     });
@@ -43,7 +39,7 @@ router.post('/day', (req, res) => {
     var dateUpdated = req.body.params.updated;
     var tripID = req.body.params.tripID;
 
-    //insert into table
+    //insert into days table
     db.run("INSERT INTO days (title, description, trip_id, created_at, updated_at) VALUES ($title, $description, $tripID, $created, $updated)",{
         $title: tripTitle,
         $description: tripSummary,
@@ -57,10 +53,6 @@ router.post('/day', (req, res) => {
         }
 
         else{
-            db.all("SELECT * FROM days", (err, items) => {
-                console.log(items)
-            });
-        
             return res.status(200).send("Day Created!");
         }
     });

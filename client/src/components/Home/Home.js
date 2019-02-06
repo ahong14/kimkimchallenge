@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './Home.css';
 
+//Landing page component, proceeds to main app after clicking button
 class Home extends Component{
     render(){
         return(

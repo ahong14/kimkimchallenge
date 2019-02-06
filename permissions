@@ -1,2 +1,3 @@
-sudo chmod -R +rw routes
-sudo chmod +rw server.js
+chmod -R +rw routes
+chmod +rw server.js
+chmod +rw createDB.js

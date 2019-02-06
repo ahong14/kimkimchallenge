@@ -3,22 +3,25 @@ import './Plans.css';
 import axios from 'axios';
 import querystring from 'querystring';
 
+//Component to display trip_plan. Contains plan info
 class Plans extends Component{
-
     constructor(props){
         super(props);
+        //trip_plan record id
         this.state = {
             id: -1
         }
         this.removePlan = this.removePlan.bind(this);
     }
 
+    //set trip_plan id from database
     componentDidMount(){
         this.setState({
             id: this.props.id
         })
     }
 
+    //remove plan from collection
     removePlan(){
         axios.delete("http://localhost:4000/api/removePlan", {
             params: {
@@ -26,7 +29,7 @@ class Plans extends Component{
             }
         }).then(res => {
                 console.log("deleting plan");
-                //update plan view by getting new result of plans
+                //update plan view by getting new result of plans after removal
                 this.props.getPlans();
             })
             .catch(err => {
@@ -35,10 +38,10 @@ class Plans extends Component{
     }
 
     render(){
+        //construct query string, store id in url to access later
         const queryID = {
             id: this.state.id
         }
-
         var query = querystring.stringify(queryID);
         const editURL = "/edit?" + query;
 

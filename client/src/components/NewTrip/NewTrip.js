@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './NewTrip.css';
 import axios from 'axios';
 
+//Component to create new trip plan to store in database
 class NewTrip extends Component{
     constructor(props){
         super(props);
@@ -9,11 +10,11 @@ class NewTrip extends Component{
             title: '',
             summary: ''
         }
-
         this.changeSearchValue = this.changeSearchValue.bind(this);
         this.createTrip = this.createTrip.bind(this);
     }
 
+    //update values based on when input changes
     changeSearchValue(){
         this.setState({
             title: this.titleValue.value,
@@ -21,7 +22,10 @@ class NewTrip extends Component{
         });
     }
 
+    //create trip function, update database with new trip_plan record
+    //executed with onClick on button after user inputs title and summary
     createTrip(){
+        //input handling, determine empty queries
         if(this.state.title.trim() === '' && this.state.summary.trim() === ''){
             alert("Please enter input to create plan!");
         }
@@ -34,6 +38,7 @@ class NewTrip extends Component{
             alert("Please enter summary!");
         }
         
+        //create and insert trip_plan record
         else{
             var date = new Date();
             axios.post('http://localhost:4000/api/newPlan/trip', {
@@ -45,11 +50,11 @@ class NewTrip extends Component{
                 }
             })
             .then(res => {
-                //redirect back to trip-plans list
+                //alert result
                 alert(res.data);
             })
             .catch(err => {
-
+                alert(err);
             })
 
         }

@@ -3,7 +3,7 @@ const router = express.Router();
 const sqlite3 = require('sqlite3').verbose();
 const db = new sqlite3.Database("Trips.db");
 
-//get all trips
+//get all trips from trip_plans table
 router.get('/', (req,res) => {
     //get all trip plans from database
     db.all("SELECT * FROM trip_plans", (err, plans) => {
@@ -12,6 +12,7 @@ router.get('/', (req,res) => {
             return res.status(500).send("error with database");
         }
 
+        //return response as json
         else{
             return res.status(200).json(plans);
         }

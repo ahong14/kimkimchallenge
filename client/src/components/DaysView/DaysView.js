@@ -3,13 +3,12 @@ import './DaysView.css';
 import Days from '../Days/Days';
 import axios from 'axios';
 
+//Component to display Days component
 class DaysView extends Component{
-
     constructor(props){
         super(props);
         this.state = {
             days:[],
-            dayCount:0,
             title:'',
             description:'',
             id: this.props.id
@@ -19,7 +18,7 @@ class DaysView extends Component{
         this.getDays = this.getDays.bind(this);
     }
 
-     //change search values
+     //change search values based on input
      changeSearchValue(){
         this.setState({
             title: this.dayTitle.value,
@@ -35,7 +34,7 @@ class DaysView extends Component{
             }
         })
         .then(res => {
-            console.log(res.data);
+            //update collection of days
             this.setState({
                 days: res.data
             })
@@ -47,6 +46,7 @@ class DaysView extends Component{
 
     //create day
     createDay(){
+        //check for valid inputs
         if(this.state.title.trim() === '' && this.state.description.trim() === ''){
             alert("Please enter input for edits");
         }
@@ -59,6 +59,7 @@ class DaysView extends Component{
             alert("Please enter description!");
         }
 
+        //create new day record and insert into database
         else{
             var date = new Date();
             axios.post("http://localhost:4000/api/newPlan/day", {
@@ -71,6 +72,7 @@ class DaysView extends Component{
                 }
             })
             .then(res => {
+                //update results of days, render to screen
                 alert(res.data);
                 this.getDays();
             })
@@ -86,6 +88,7 @@ class DaysView extends Component{
     }
 
     render(){
+        //dynamic rendering of Days based on current results
         var dayCount = 0;
         const results = this.state.days.map(result => {
             return <Days key = {result.id} day = {dayCount+=1}id = {result.id} title = {result.title} description = {result.description} created = {result.created_at} updated = {result.updated_at} getDays = {this.getDays}/>

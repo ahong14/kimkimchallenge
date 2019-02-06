@@ -6,6 +6,7 @@ import NewTrip from './components/NewTrip/NewTrip';
 import EditPlan from './components/EditPlan/EditPlan';
 import EditDay from './components/EditDay/EditDay';
 
+//Main application component, router is setup to handle routes and rendering appropiate components
 class App extends Component {
   render() {
     return (
