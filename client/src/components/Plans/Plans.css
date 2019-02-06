@@ -1,0 +1,11 @@
+.hoverItem{
+    cursor: pointer;
+}
+
+.hoverItem:hover{
+    color: lightblue;
+}
+
+#summary{
+    height:50px;
+}

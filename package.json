@@ -1,0 +1,31 @@
+{
+  "name": "kimkim",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "backend": "nodemon server.js",
+    "frontend": "cd client && npm start",
+    "start": "concurrently \"npm run backend\" \"npm run frontend\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ahong14/kimkimchallenge.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ahong14/kimkimchallenge/issues"
+  },
+  "homepage": "https://github.com/ahong14/kimkimchallenge#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "concurrently": "^4.1.0",
+    "cors": "^2.8.5",
+    "create-react-app": "^2.1.3",
+    "express": "^4.16.4",
+    "nodemon": "^1.18.9",
+    "path": "^0.12.7",
+    "sqlite3": "^4.0.6"
+  }
+}

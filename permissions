@@ -1,0 +1,2 @@
+sudo chmod -R +rw routes
+sudo chmod +rw server.js
