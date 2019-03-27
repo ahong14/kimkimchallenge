@@ -62,7 +62,7 @@ class DaysView extends Component{
         //create new day record and insert into database
         else{
             var date = new Date();
-            axios.post("http://localhost:4000/api/newPlan/day", {
+            axios.post("/api/newPlan/day", {
                 params:{
                     title: this.state.title,
                     description: this.state.description,
