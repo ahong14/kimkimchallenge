@@ -14,6 +14,9 @@ app.use(bodyParser.urlencoded({extended: false}));
 // use cors;
 app.use(cors());
 
+//serve react files
+app.use(express.static(path.join(__dirname, 'client/build')));
+
 //use routes
 const router = express.Router();
 const editPlan = require('./routes/edit');
@@ -25,6 +28,11 @@ app.use('/api/editPlan', editPlan);
 app.use('/api/newPlan', newPlan);
 app.use('/api/getPlans', getPlans);
 app.use('/api/removePlan', removePlan);
+
+//fix react app crashing on refresh
+app.get('/*', (req,res) => {
+  res.sendFile(path.join(__dirname + '/client/build/index.html'))
+})
 
 // listen to requests on port
 // choose port based on environment

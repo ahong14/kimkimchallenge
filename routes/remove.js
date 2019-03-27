@@ -15,7 +15,16 @@ router.delete("/", (req,res) => {
             return res.status(500).send("error with database");
         }
 
-        return res.status(200).send("record deleted");
+        //delete days associated with a travel plan
+        db.run("DELETE FROM days WHERE trip_id = $id", {
+            $id: ud
+        }, (err) => {
+            if (err){
+                console.error(err);
+                return res.status(500).send("error with database");
+            }
+            return res.status(200).send("record deleted");
+        })
     })
 })
 
