@@ -30,7 +30,7 @@ class EditPlan extends Component{
     //onClick function to update trip details, when user clicks button
     //update trip_plan record in database based on id
     editTrip(){
-        axios.patch('http://localhost:4000/api/editPlan', {
+        axios.patch('/api/editPlan', {
             params:{    
                 id: this.state.id,
                 title: this.state.title,

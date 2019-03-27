@@ -41,7 +41,7 @@ class NewTrip extends Component{
         //create and insert trip_plan record
         else{
             var date = new Date();
-            axios.post('http://localhost:4000/api/newPlan/trip', {
+            axios.post('/api/newPlan/trip', {
                 params:{
                     title: this.state.title,
                     summary: this.state.summary,

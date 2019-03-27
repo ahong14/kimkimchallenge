@@ -28,7 +28,7 @@ class DaysView extends Component{
 
     //get days from database for current trip
     getDays(){
-        axios.get('http://localhost:4000/api/getPlans/days', {
+        axios.get('/api/getPlans/days', {
             params:{
                 tripID: this.state.id
             }

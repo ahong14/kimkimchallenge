@@ -18,7 +18,7 @@ class Days extends Component{
 
     //remove day record from database
     removeDay(){
-        axios.delete("http://localhost:4000/api/removePlan/day", {
+        axios.delete("/api/removePlan/day", {
             params:{
                 id: this.state.dayID
             }

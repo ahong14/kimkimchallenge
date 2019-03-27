@@ -28,7 +28,7 @@ class EditDay extends Component{
 
     //edit day
     editDay(){
-        axios.patch("http://localhost:4000/api/editPlan/day", {
+        axios.patch("/api/editPlan/day", {
             params:{
                 id: this.state.id,
                 title: this.state.title,

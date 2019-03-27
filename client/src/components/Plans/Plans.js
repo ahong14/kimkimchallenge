@@ -23,7 +23,7 @@ class Plans extends Component{
 
     //remove plan from collection
     removePlan(){
-        axios.delete("http://localhost:4000/api/removePlan", {
+        axios.delete("/api/removePlan", {
             params: {
                 id: this.state.id
             }

@@ -17,7 +17,7 @@ class PlansView extends Component{
 
     //get plans stored in trip_plans table in database, executed in child component when a plan is removed or added
     getPlans(){
-        axios.get("http://localhost:4000/api/getPlans")
+        axios.get("/api/getPlans")
             .then(res => {
                 //set state of component to new data retrieved
                 this.setState({
